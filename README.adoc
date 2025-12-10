@@ -1,15 +1,15 @@
 <div align="center">
 
-# Axiom.jl
+= Axiom.jl
 
-### *Provably Correct Machine Learning*
+=== *Provably Correct Machine Learning*
 
 [![Julia](https://img.shields.io/badge/Julia-1.9+-9558B2?logo=julia)](https://julialang.org/)
 [![Rust](https://img.shields.io/badge/Rust-Backend-DEA584?logo=rust)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Docs](https://img.shields.io/badge/Docs-Wiki-blue)](docs/wiki/Home.md)
 
-**Machine learning where bugs are caught at compile time, not in production.**
+*Machine learning where bugs are caught at compile time, not in production.*
 
 [Features](#features) | [Quick Start](#quick-start) | [Documentation](docs/wiki/Home.md) | [Vision](docs/wiki/Vision.md)
 
@@ -17,14 +17,14 @@
 
 ---
 
-## What is Axiom.jl?
+== What is Axiom.jl?
 
-Axiom.jl is a **next-generation ML framework** that combines:
+Axiom.jl is a *next-generation ML framework* that combines:
 
-- **Compile-time verification** - Shape errors caught before runtime
-- **Formal guarantees** - Mathematical proofs about model behavior
-- **High performance** - Rust backend for production speed
-- **Julia elegance** - Express models as mathematical specifications
+- *Compile-time verification* - Shape errors caught before runtime
+- *Formal guarantees* - Mathematical proofs about model behavior
+- *High performance* - Rust backend for production speed
+- *Julia elegance* - Express models as mathematical specifications
 
 ```julia
 using Axiom
@@ -47,13 +47,13 @@ predictions = model(images)  # Type-safe, verified, fast
 
 ---
 
-## Features
+== Features
 
-### Compile-Time Shape Verification
+=== Compile-Time Shape Verification
 
 ```julia
-# PyTorch: Runtime error after hours of training
-# Axiom.jl: Compile error in milliseconds
+= PyTorch: Runtime error after hours of training
+= Axiom.jl: Compile error in milliseconds
 
 @axiom BrokenModel begin
     input :: Tensor{Float32, (224, 224, 3)}
@@ -63,7 +63,7 @@ predictions = model(images)  # Type-safe, verified, fast
 end
 ```
 
-### Formal Verification
+=== Formal Verification
 
 ```julia
 @axiom SafeClassifier begin
@@ -72,68 +72,68 @@ end
     @prove ∀x. sum(softmax(x)) == 1.0      # Mathematical proof
 end
 
-# Generate verification certificates
+= Generate verification certificates
 cert = verify(model) |> generate_certificate
 save_certificate(cert, "fda_submission.cert")
 ```
 
-### PyTorch Compatibility
+=== PyTorch Compatibility
 
 ```julia
-# Load any PyTorch model
+= Load any PyTorch model
 model = from_pytorch("resnet50.pth")
 
-# Get 2-3x speedup immediately
+= Get 2-3x speedup immediately
 output = model(input)  # Uses Rust backend
 
-# Add verification
+= Add verification
 result = verify(model, properties=[ValidProbabilities()])
 ```
 
-### High Performance
+=== High Performance
 
 ```julia
-# Development: Julia backend
+= Development: Julia backend
 model = Sequential(Dense(784, 128, relu), Dense(128, 10))
 
-# Production: Rust backend (2-3x faster)
+= Production: Rust backend (2-3x faster)
 prod_model = compile(model, backend=:rust, optimize=:aggressive)
 ```
 
 ---
 
-## Quick Start
+== Quick Start
 
-### Installation
+=== Installation
 
 ```julia
 using Pkg
 Pkg.add("Axiom")
 ```
 
-### Hello World
+=== Hello World
 
 ```julia
 using Axiom
 
-# Define a simple classifier
+= Define a simple classifier
 model = Sequential(
     Dense(784, 256, relu),
     Dense(256, 10),
     Softmax()
 )
 
-# Generate sample data
+= Generate sample data
 x = randn(Float32, 32, 784)
 
-# Inference
+= Inference
 predictions = model(x)
 
-# Verify properties
+= Verify properties
 @ensure all(sum(predictions, dims=2) .≈ 1.0)
 ```
 
-### With @axiom DSL
+=== With @axiom DSL
 
 ```julia
 using Axiom
@@ -155,9 +155,9 @@ model = MNISTClassifier()
 
 ---
 
-## Why Axiom.jl?
+== Why Axiom.jl?
 
-### The Problem
+=== The Problem
 
 ML models are deployed in critical applications:
 - Medical diagnosis
@@ -167,9 +167,9 @@ ML models are deployed in critical applications:
 
 Yet our tools allow bugs to slip through to production.
 
-### The Solution
+=== The Solution
 
-Axiom.jl catches bugs **before** they cause harm:
+Axiom.jl catches bugs *before* they cause harm:
 
 | Issue | PyTorch | Axiom.jl |
 |-------|---------|----------|
@@ -180,18 +180,18 @@ Axiom.jl catches bugs **before** they cause harm:
 
 ---
 
-## Documentation
+== Documentation
 
-- **[Home](docs/wiki/Home.md)** - Start here
-- **[Vision](docs/wiki/Vision.md)** - Why we built this
-- **[@axiom DSL](docs/wiki/Axiom-DSL.md)** - Model definition guide
-- **[Verification](docs/wiki/Verification.md)** - @ensure and @prove
-- **[Migration Guide](docs/wiki/Migration-Guide.md)** - From PyTorch
-- **[FAQ](docs/wiki/FAQ.md)** - Common questions
+- *[Home](docs/wiki/Home.md)* - Start here
+- *[Vision](docs/wiki/Vision.md)* - Why we built this
+- *[@axiom DSL](docs/wiki/Axiom-DSL.md)* - Model definition guide
+- *[Verification](docs/wiki/Verification.md)* - @ensure and @prove
+- *[Migration Guide](docs/wiki/Migration-Guide.md)* - From PyTorch
+- *[FAQ](docs/wiki/FAQ.md)* - Common questions
 
 ---
 
-## Project Structure
+== Project Structure
 
 ```
 Axiom.jl/
@@ -215,17 +215,17 @@ Axiom.jl/
 
 ---
 
-## Roadmap
+== Roadmap
 
-- [x] **v0.1** - Core framework, DSL, verification basics
-- [ ] **v0.2** - Full Rust backend, GPU support
-- [ ] **v0.3** - Hugging Face integration, model zoo
-- [ ] **v0.4** - Advanced proofs, SMT integration
-- [ ] **v1.0** - Production ready, industry certifications
+- [x] *v0.1* - Core framework, DSL, verification basics
+- [ ] *v0.2* - Full Rust backend, GPU support
+- [ ] *v0.3* - Hugging Face integration, model zoo
+- [ ] *v0.4* - Advanced proofs, SMT integration
+- [ ] *v1.0* - Production ready, industry certifications
 
 ---
 
-## Contributing
+== Contributing
 
 We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
@@ -237,13 +237,13 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
-## License
+== License
 
 MIT License - see [LICENSE](LICENSE) for details.
 
 ---
 
-## Acknowledgments
+== Acknowledgments
 
 Axiom.jl builds on the shoulders of giants:
 
@@ -256,7 +256,7 @@ Axiom.jl builds on the shoulders of giants:
 
 <div align="center">
 
-**The future of ML is verified.**
+*The future of ML is verified.*
 
 [Get Started](docs/wiki/Home.md) | [Join Discord](https://discord.gg/axiomjl) | [Star on GitHub](https://github.com/Hyperpolymath/Axiom.jl)
 
